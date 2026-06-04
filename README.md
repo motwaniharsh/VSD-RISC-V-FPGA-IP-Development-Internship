@@ -45,7 +45,7 @@ Topics covered:
 * Instruction-level analysis
 * Compiler optimization comparison (`-O1` vs `-Ofast`)
 
-📄 Detailed Report: [Task 1](./task1/README.md)
+📄 Detailed Report: [Task 1](./Task1/README.md)
 
 
 ---
