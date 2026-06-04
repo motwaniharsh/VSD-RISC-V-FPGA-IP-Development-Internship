@@ -329,8 +329,6 @@ Therefore, each instruction occupies:
 4 Bytes = 32 Bits
 ```
 
-which is the standard instruction size of the RV64I base instruction set.
-
 ### Total Code Size
 
 The total memory occupied by the instructions in the `main()` function is:
