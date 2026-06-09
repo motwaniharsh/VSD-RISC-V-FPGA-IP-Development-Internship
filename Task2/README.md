@@ -2,7 +2,7 @@
 
 ## Objective
 
-The objective of this task is to understand the execution and debugging of RISC-V programs using the SPIKE simulator. The task involves verifying the correctness of RISC-V executables generated using different compiler optimization levels, observing program execution through simulation, and analyzing the effect of individual assembly instructions on processor registers. Additionally, a simple C application will be developed, compiled using the RISC-V GCC toolchain, and executed on the SPIKE simulator to gain hands-on experience with the complete RISC-V software development flow.
+The objective of this task is to understand the execution and debugging of RISC-V programs using the SPIKE simulator. The task involves verifying the correctness of RISC-V executables generated using different compiler optimization levels, observing program execution through simulation, and analyzing the effect of individual assembly instructions on processor registers. Additionally, an AI/ML-inspired C application implementing a simple artificial neuron with ReLU activation will be developed, compiled using the RISC-V GCC toolchain, and executed on the SPIKE simulator to gain hands-on experience with the complete RISC-V software development flow.
 
 ---
 
@@ -12,11 +12,11 @@ This task is divided into two parts:
 
 ### Part 1: Verification and Debugging of the Task 1 Program
 
-The C program developed in Task 1 is compiled using RISC-V GCC with both **-O1** and **-Ofast** optimization levels and executed on the SPIKE simulator. The generated assembly code is analyzed using `objdump`, and instruction-by-instruction execution is observed in SPIKE debug mode to understand the behavior of RISC-V instructions and register updates.
+The C program developed in Task 1 is compiled using RISC-V GCC with both **-O1** and **-Ofast** optimization levels and executed on the SPIKE simulator. The generated assembly code is analyzed using `objdump`, and instruction-by-instruction execution is observed in SPIKE debug mode to understand the behavior of RISC-V instructions and register updates. Selected instructions are further examined to understand their encoding, functionality, and impact on processor state.
 
-### Part 2: Development and Simulation of a New C Program
+### Part 2: Development and Simulation of an AI/ML-Based C Application
 
-A new C application is developed and compiled using the RISC-V GCC toolchain. The generated executable is executed on the SPIKE simulator, and the corresponding assembly code is analyzed to further strengthen the understanding of the RISC-V compilation and execution flow.
+A simple AI/ML application based on an artificial neuron with ReLU activation is developed in C. The program performs weighted input processing, bias addition, and activation computation, which are fundamental operations used in neural networks. The application is compiled using the RISC-V GCC toolchain and executed on the SPIKE simulator. The generated assembly code and processor behavior are analyzed to study how basic AI/ML computations are implemented and executed on a RISC-V processor.
 
 ---
 
@@ -468,3 +468,339 @@ The change in the stack pointer observed in the debugger exactly matches the exp
 ## Conclusion
 
 The RISC-V executable generated using both **-O1** and **-Ofast** optimization levels was successfully executed on the SPIKE simulator and produced the same output as the original GCC-compiled program. Using SPIKE's debug mode, instruction-by-instruction execution was observed and register modifications caused by the `LUI` and `ADDI` instructions were verified. This experiment demonstrated the correctness of the RISC-V compilation flow and provided insight into low-level instruction execution within the RISC-V architecture.
+
+---
+---
+
+# Part 2: Development and Simulation of an AI/ML-Based C Application
+
+## Objective
+
+To develop a simple Artificial Intelligence / Machine Learning (AI/ML) application in C, compile it using the RISC-V GCC toolchain, execute it on the SPIKE simulator, and analyze the generated assembly code to understand how basic neural network computations are implemented and executed on a RISC-V processor.
+
+---
+
+## Introduction
+
+Artificial Neural Networks (ANNs) form the foundation of many modern AI/ML applications. At the core of every neural network is an artificial neuron, which performs a weighted sum of input values followed by an activation function.
+
+In this experiment, a simple artificial neuron with a ReLU (Rectified Linear Unit) activation function is implemented in C. The program is compiled for the RISC-V architecture using the RISC-V GCC compiler and executed using the SPIKE simulator. The generated assembly code is then analyzed to observe how AI/ML computations are translated into RISC-V instructions.
+
+---
+
+## Artificial Neuron Model
+
+The output of a neuron is calculated using:
+
+\[
+y = (x_1w_1 + x_2w_2 + x_3w_3) + bias
+\]
+
+where:
+
+- \(x_1, x_2, x_3\) are the input values
+- \(w_1, w_2, w_3\) are the corresponding weights
+- **bias** is a constant value added to the weighted sum
+
+After calculating the weighted sum, the ReLU activation function is applied:
+
+\[
+ReLU(y)=max(0,y)
+\]
+
+This means:
+
+- If \(y > 0\), output = \(y\)
+- If \(y < 0\), output = \(0\)
+
+---
+
+## Program Implementation
+
+The following C program implements a simple artificial neuron with three inputs and a ReLU activation function.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int inputs[3] = {2, 3, 1};
+    int weights[3] = {4, 5, 2};
+
+    int bias = -20;
+    int output = bias;
+
+    for(int i=0; i<3; i++){
+        output += inputs[i] * weights[i];
+    }
+
+    if(output < 0)
+        output = 0;
+
+    printf("Neuron Output = %d\n", output);
+
+    return 0;
+}
+```
+
+---
+
+## Step 1: Create the Source File
+
+Create a new source file and enter the program code.
+
+```bash
+gedit neuron.c
+```
+
+Save the file after entering the code.
+
+### Screenshot
+
+![Neuron Program](Screenshots/Part2/neuron_code.png)
+
+---
+
+## Step 2: Compile and Execute Using Native GCC
+
+Compile the program using the standard GCC compiler.
+
+```bash
+gcc neuron.c
+```
+
+Execute the generated program.
+
+```bash
+./a.out
+```
+
+### Expected Output
+
+```text
+Neuron Output = 5
+```
+
+The weighted sum is calculated as:
+
+```text
+(2×4) + (3×5) + (1×2) - 20
+
+= 8 + 15 + 2 - 20
+
+= 5
+```
+
+Since the output is positive, the ReLU activation function does not modify the result.
+
+### Screenshot
+
+![GCC Execution](Screenshots/Part2/gcc_execution.png)
+
+---
+
+## Step 3: Compile Using RISC-V GCC
+
+Compile the program for the RISC-V architecture using the **-O1** optimization level.
+
+```bash
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o neuron_O1.o neuron.c
+```
+
+### Command Explanation
+
+- `riscv64-unknown-elf-gcc` → RISC-V cross compiler
+- `-O1` → Enables moderate compiler optimizations
+- `-mabi=lp64` → Uses LP64 ABI
+- `-march=rv64i` → Targets the RV64I instruction set
+- `-o neuron_O1.o` → Output executable file
+- `neuron.c` → Source file
+
+Compile the same program using the **-Ofast** optimization level.
+
+```bash
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o neuron_Ofast.o neuron.c
+```
+
+### Screenshot
+
+![RISC-V Compilation](Screenshots/Part2/riscv_compile.png)
+
+---
+
+## Step 4: Execute on SPIKE Simulator
+
+Run the executable generated with **-O1**.
+
+```bash
+spike pk neuron_O1.o
+```
+
+Run the executable generated with **-Ofast**.
+
+```bash
+spike pk neuron_Ofast.o
+```
+
+### Expected Output
+
+```text
+Neuron Output = 5
+```
+
+The output obtained through SPIKE should match the output obtained using native GCC execution.
+
+### Screenshot
+
+![SPIKE Execution](Screenshots/Part2/spike_execution.png)
+
+---
+
+## Step 5: Generate and Analyze Assembly Code
+
+The generated RISC-V executables were disassembled using `objdump` to observe the assembly instructions produced under different compiler optimization levels.
+
+### Generate Assembly Code for the -O1 Executable
+
+Execute the following command:
+
+```bash
+riscv64-unknown-elf-objdump -d neuron_O1.o | less
+```
+
+This command disassembles the executable and displays the generated RISC-V assembly code. The `main()` function was then located and analyzed.
+
+### Analysis of the -O1 Version
+
+**Start Address:** `0x10184`  
+**End Address:** `0x101A8`
+
+Since each RISC-V instruction occupies 4 bytes, the total number of instructions in the `main()` function can be calculated as:
+
+\[
+\frac{0x101A8 - 0x10184}{4} + 1 = 10
+\]
+
+**Instruction Count:** **10 Instructions**
+
+### Screenshot
+
+![O1 Objdump Analysis](screenshots/Part2/o1_objdump.png)
+
+---
+
+### Generate Assembly Code for the -Ofast Executable
+
+Execute the following command:
+
+```bash
+riscv64-unknown-elf-objdump -d neuron_Ofast.o | less
+```
+
+This command generates the disassembled assembly code for the executable compiled using the `-Ofast` optimization level.
+
+### Analysis of the -Ofast Version
+
+**Start Address:** `0x100B0`  
+**End Address:** `0x10140`
+
+Since each RISC-V instruction occupies 4 bytes, the total number of instructions in the `main()` function can be calculated as:
+
+\[
+\frac{0x10140 - 0x100B0}{4} + 1 = 37
+\]
+
+**Instruction Count:** **37 Instructions**
+
+### Screenshot
+
+![Ofast Objdump Analysis](screenshots/Part2/ofast_objdump.png)
+
+---
+
+### Instruction Count Comparison
+
+| Optimization Level | Start Address | End Address | Number of Instructions |
+|-------------------|---------------|-------------|------------------------|
+| -O1 | 0x10184 | 0x101A8 | 10 |
+| -Ofast | 0x100B0 | 0x10140 | 37 |
+
+---
+
+### Observation
+
+The assembly generated using the `-O1` optimization level contains **10 instructions**, whereas the assembly generated using the `-Ofast` optimization level contains **37 instructions**.
+
+Although `-Ofast` is a more aggressive optimization level, it does not always generate fewer instructions. The compiler applies additional optimization techniques such as instruction scheduling, aggressive mathematical optimizations, constant propagation, and code transformations aimed at improving execution speed.
+
+As a result, the compiler may generate a larger instruction sequence if it can improve runtime performance. Therefore, optimization effectiveness should be evaluated based on execution efficiency rather than instruction count alone.
+
+In this application, the `-Ofast` version generated more instructions than the `-O1` version, indicating that the compiler performed additional transformations to optimize the execution of the neuron computation.
+
+---
+
+## Step 6: Debug Using SPIKE
+
+Start SPIKE in debug mode.
+
+```bash
+spike -d pk neuron_Ofast.o
+```
+
+Run execution until the beginning of the main function.
+
+```text
+until pc 0 100b0
+```
+
+Observe register values.
+
+```text
+reg 0 a5
+reg 0 a4
+reg 0 sp
+```
+
+Execute instructions step-by-step and monitor changes in processor registers.
+
+This allows verification of how arithmetic operations, memory accesses, and branch instructions contribute to the implementation of the neuron computation.
+
+### Screenshot
+
+![SPIKE Debug](Screenshots/Part2/spike_debug.png)
+
+---
+
+## Observations
+
+* The Artificial Neuron program was successfully compiled using both the native GCC compiler and the RISC-V GCC toolchain.
+* The program produced the same output when executed using native GCC and the SPIKE RISC-V simulator, confirming the correctness of the generated RISC-V executable.
+* The weighted sum of inputs and weights was correctly computed and processed through the ReLU activation function.
+* Assembly code generated using different optimization levels showed significant differences in instruction count and code organization.
+* The `-O1` optimized version generated 10 instructions within the `main()` function, whereas the `-Ofast` version generated 37 instructions.
+* The increase in instruction count for the `-Ofast` build demonstrates that aggressive optimization does not necessarily reduce code size; instead, the compiler may introduce additional transformations to improve execution performance.
+* Analysis of the disassembled code provided insight into how AI/ML computations are translated into RISC-V assembly instructions.
+
+---
+
+## Key Learnings
+
+* Learned how basic Artificial Intelligence and Machine Learning computations can be implemented using the C programming language.
+* Understood the working of an artificial neuron, including weighted inputs, bias addition, and ReLU activation.
+* Learned how to compile AI/ML applications for the RISC-V architecture using the RISC-V GCC toolchain.
+* Gained experience in executing RISC-V binaries on the SPIKE simulator.
+* Learned how to generate and inspect assembly code using the GNU `objdump` utility.
+* Understood the impact of compiler optimization levels on the generated assembly code.
+* Learned how to compare assembly generated using `-O1` and `-Ofast` optimization levels.
+* Gained insight into the relationship between high-level AI/ML algorithms and their low-level implementation on a RISC-V processor.
+* Developed familiarity with the complete RISC-V software development workflow, including coding, compilation, simulation, and assembly analysis.
+
+---
+
+## Conclusion
+
+In this experiment, a simple AI/ML-inspired application based on an artificial neuron with ReLU activation was successfully implemented, compiled, and executed on the RISC-V platform using the SPIKE simulator. The program produced the expected output and demonstrated the correctness of the generated RISC-V executable.
+
+Assembly-level analysis revealed that different compiler optimization levels can significantly influence the structure and size of the generated machine code. While the `-Ofast` version produced a larger number of instructions than the `-O1` version for this application, both executables maintained identical functionality and produced the same output.
+
+Overall, the experiment provided practical exposure to AI/ML computations, RISC-V cross-compilation, SPIKE-based simulation, and assembly code analysis, thereby strengthening the understanding of how high-level neural network operations are implemented and executed on RISC-V processors.
