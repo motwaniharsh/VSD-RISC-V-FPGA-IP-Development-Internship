@@ -84,7 +84,7 @@ Sum of numbers from 1 to 100 is 5050
 
 ### Screenshot
 
-![Native GCC Execution](screenshots/gcc_output.png)
+![Native GCC Execution](screenshots/Part1/gcc_output.png)
 
 This output serves as the reference result for validating the RISC-V implementation.
 
@@ -133,7 +133,7 @@ The output produced by the SPIKE simulator exactly matches the output produced b
 
 ### Screenshot
 
-![SPIKE O1 Output](screenshots/spike_o1_output.png)
+![SPIKE O1 Output](screenshots/Part1/spike_o1_output.png)
 
 ---
 
@@ -170,7 +170,7 @@ Even though the assembly code generated using **-Ofast** differs from the **-O1*
 
 ### Screenshot
 
-![SPIKE Ofast Output](screenshots/spike_ofast_output.png)
+![SPIKE Ofast Output](screenshots/Part1/spike_ofast_output.png)
 
 ---
 
@@ -194,7 +194,7 @@ The `<main>` function generated using **-Ofast** is located and its instructions
 
 ### Screenshot
 
-![Objdump Output](screenshots/objdump_main.png)
+![Objdump Output](screenshots/Part1/objdump_main.png)
 
 ---
 
@@ -260,7 +260,7 @@ Where:
 
 The instruction format is shown below:
 
-![LUI Instruction Format](Part1/screenshots/lui_format.png)
+![LUI Instruction Format](screenshots/Part1/lui_format.png)
 
 ### Register Verification
 
@@ -310,7 +310,7 @@ The value stored in register `a2` after execution exactly matches the expected r
 
 ### Screenshot
 
-![First LUI Observation](screenshots/lui_a2.png)
+![First LUI Observation](screenshots/Part1/lui_a2.png)
 
 ---
 
@@ -370,7 +370,7 @@ The value observed in register `a0` matches the expected result, verifying the c
 
 ### Screenshot
 
-![Second LUI Observation](screenshots/lui_a0.png)
+![Second LUI Observation](screenshots/Part1/lui_a0.png)
 
 ---
 
@@ -400,7 +400,7 @@ Where:
 
 The instruction format is shown below:
 
-![ADDI Instruction Format](Part1/screenshots/addi_format.png)
+![ADDI Instruction Format](screenshots/Part1/addi_format.png)
 
 ### Register Verification
 
@@ -450,7 +450,7 @@ The change in the stack pointer observed in the debugger exactly matches the exp
 
 ### Screenshot
 
-![ADDI Observation](screenshots/addi_sp.png)
+![ADDI Observation](screenshots/Part1/addi_sp.png)
 
 ---
 
