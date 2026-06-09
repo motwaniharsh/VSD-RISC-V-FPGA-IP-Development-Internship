@@ -557,7 +557,7 @@ Save the file after entering the code.
 
 ### Screenshot
 
-![Neuron Program](Screenshots/Part2/neuron_code.png)
+![Neuron Program](screenshots/Part2/neuron_code.png)
 
 ---
 
@@ -595,7 +595,7 @@ Since the output is positive, the ReLU activation function does not modify the r
 
 ### Screenshot
 
-![GCC Execution](Screenshots/Part2/gcc_execution.png)
+![GCC Execution](screenshots/Part2/gcc_execution.png)
 
 ---
 
@@ -624,7 +624,7 @@ riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o neuron_Ofast.o neuron.
 
 ### Screenshot
 
-![RISC-V Compilation](Screenshots/Part2/riscv_compile.png)
+![RISC-V Compilation](screenshots/Part2/riscv_compile.png)
 
 ---
 
@@ -652,7 +652,7 @@ The output obtained through SPIKE should match the output obtained using native 
 
 ### Screenshot
 
-![SPIKE Execution](Screenshots/Part2/spike_execution.png)
+![SPIKE Execution](screenshots/Part2/spike_execution.png)
 
 ---
 
@@ -767,7 +767,7 @@ This allows verification of how arithmetic operations, memory accesses, and bran
 
 ### Screenshot
 
-![SPIKE Debug](Screenshots/Part2/spike_debug.png)
+![SPIKE Debug](screenshots/Part2/spike_debug.png)
 
 ---
 
