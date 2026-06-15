@@ -20,14 +20,17 @@ This internship focuses on understanding the RISC-V ecosystem through hands-on e
 * Develop proficiency in FPGA design and IP development workflows.
 * Build practical skills in simulation, verification, and hardware implementation.
 
+---
 
 ## Task Progress
 
-| Task   | Description                                                     | Status      |
-| ------ | --------------------------------------------------------------- | ----------- |
-| Task 1 | Introduction to the RISC-V Compilation and Optimization Process | ✅ Completed |
-| Task 2 | SPIKE Simulation and Observation with -O1 and -Ofast            | ✅ Completed |
-| Task 3 | To be Updated                                                   | ⏳ Pending   |
+| Task   | Description                                                     | Status         |
+| ------ | --------------------------------------------------------------- | -------------- |
+| Task 1 | Introduction to the RISC-V Compilation and Optimization Process | ✅ Completed    |
+| Task 2 | SPIKE Simulation and Observation with -O1 and -Ofast            | ✅ Completed    |
+| Task 3 | Environment Setup & RISC-V Reference Bring-Up                   | ✅ Completed    |
+| Task 4 | To Be Updated                                                   | ⏳ Pending      |
+
 
 ---
 
@@ -63,6 +66,24 @@ Topics covered:
 * RISC-V compilation, simulation, and assembly analysis of AI/ML workloads
 
 📄 Detailed Report: [Task 2](./Task2/README.md)
+
+---
+
+### Task 3: Environment Setup & RISC-V Reference Bring-Up
+
+Topics covered:
+
+* GitHub Codespace setup and verification
+* RISC-V reference flow validation
+* Compilation and execution of RISC-V sample programs
+* Understanding the RISC-V software execution flow
+* Local Linux environment preparation
+* Installation and configuration of the RISC-V GNU Toolchain
+* Building and configuring the SPIKE ISA Simulator
+* Building and configuring the RISC-V Proxy Kernel (PK)
+* Verification of toolchain functionality through simulation and execution of sample programs
+
+📄 Detailed Report: [Task 3](./Task3/README.md)
 
 ---
 
