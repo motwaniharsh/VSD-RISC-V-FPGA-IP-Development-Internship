@@ -40,7 +40,7 @@ The official `vsd-riscv2` repository was opened on GitHub. The repository contai
 
 ### Screenshot
 
-![Repository Access](images/task3/repository_access.png)
+![Repository Access](sreenshots/repository_access.png)
 
 ---
 
@@ -62,7 +62,7 @@ The following checks confirmed that the environment was ready for use:
 
 ### Screenshot
 
-![Codespace Initialization](images/task3/codespace_initialization.png)
+![Codespace Initialization](sreenshots/codespace_initialization.png)
 
 ---
 
@@ -80,7 +80,7 @@ The terminal provides direct access to the pre-installed RISC-V GNU Toolchain, S
 
 ### Screenshot
 
-![Codespace Terminal](images/task3/step2_1_terminal.png)
+![Codespace Terminal](sreenshots/step2_1_terminal.png)
 
 ---
 
@@ -140,7 +140,7 @@ The successful execution confirms that:
 
 ### Screenshot
 
-![Program Execution](images/task3/step2_3_program_execution.png)
+![Program Execution](sreenshots/step2_3_program_execution.png)
 
 ---
 
@@ -182,7 +182,7 @@ The output matched the expected result, confirming successful compilation and ex
 
 ### Screenshot
 
-![Modified Program Output](images/task3/step2_4_modified_output.png)
+![Modified Program Output](sreenshots/step2_4_modified_output.png)
 
 ---
 
@@ -204,9 +204,7 @@ After cloning, the repository was successfully downloaded and made available for
 
 ### Screenshot
 
-```markdown
-![Repository Cloning](images/task3/step3_1_clone_repo.png)
-```
+![Repository Cloning](sreenshots/step3_1_clone_repo.png)
 
 ---
 
@@ -220,9 +218,7 @@ cd vsdfpga_labs/basicRISCV/Firmware
 
 ### Screenshot
 
-```markdown
-![Firmware Directory](images/task3/step3_2_firmware_directory.png)
-```
+![Firmware Directory](sreenshots/step3_2_firmware_directory.png)
 
 ---
 
@@ -234,9 +230,7 @@ The source code was reviewed to understand the application before compilation.
 
 ### Screenshot
 
-```markdown
-![riscv_logo.c](images/task3/step3_3_source_code.png)
-```
+![riscv_logo.c](sreenshots/step3_3_source_code.png)
 
 ---
 
@@ -270,9 +264,7 @@ The VSDFPGA Labs repository was successfully cloned, the sample firmware was com
 
 ### Screenshot
 
-```markdown
-![SPIKE Execution](images/task3/step3_5_output.png)
-```
+![SPIKE Execution](sreenshots/step3_5_output.png)
 
 ---
 
@@ -298,7 +290,7 @@ git clone https://github.com/vsdip/vsdfpga_labs.git
 
 ### Screenshot
 
-![Repository Cloning](images/repository_clone.png)
+![Repository Cloning](sreenshots/repository_clone.png)
 
 ---
 
@@ -315,7 +307,7 @@ riscv64-unknown-elf-gcc --version
 
 ### Screenshot
 
-![Toolchain Verification](images/gcc_version.png)
+![Toolchain Verification](sreenshots/gcc_version.png)
 
 ---
 
@@ -332,7 +324,7 @@ spike --help
 
 ### Screenshot
 
-![Spike Installation](images/spike_install.png)
+![Spike Installation](sreenshots/spike_install.png)
 
 ---
 
@@ -354,7 +346,7 @@ v1.0.0
 
 ### Screenshot
 
-![PK Installation](images/pk_install.png)
+![PK Installation](sreenshots/pk_install.png)
 
 ---
 
@@ -380,7 +372,7 @@ spike pk sum1ton.o
 
 ### Screenshot
 
-![sum1ton Execution](images/sum1ton_run.png)
+![sum1ton Execution](sreenshots/sum1ton_run.png)
 
 ---
 
@@ -400,7 +392,7 @@ cat riscv_logo.c
 
 ### Screenshot
 
-![riscv_logo Execution](images/riscv_logo_program.png)
+![riscv_logo Execution](sreenshots/riscv_logo_program.png)
 
 Compile:
 
@@ -416,7 +408,7 @@ spike pk riscv_logo.o
 
 ### Screenshot
 
-![riscv_logo Execution](images/riscv_logo_run.png)
+![riscv_logo Execution](sreenshots/riscv_logo_run.png)
 
 ---
 
