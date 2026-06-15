@@ -2,33 +2,51 @@
 
 ## Objective
 
-The objective of this task is to establish a functional RISC-V development environment using GitHub Codespaces and verify that the provided reference environment is correctly configured. This environment will serve as the foundation for subsequent RISC-V, IP integration, and FPGA development tasks.
+The objective of this task is to establish a complete RISC-V development environment, verify the reference RISC-V execution flow, and validate the VSDFPGA laboratory environment.
+
+This task involves:
+
+- Setting up the official GitHub Codespace environment
+- Running and validating the provided RISC-V reference program
+- Cloning and executing the VSDFPGA labs repository
+- Preparing and validating a local Linux-based RISC-V development environment
+
+The successful completion of these steps ensures readiness for future FPGA, IP integration, and SoC development tasks.
 
 ---
 
 ## Introduction
 
-Before developing custom IP blocks or working with FPGA hardware, it is essential to verify that the software development environment is functioning correctly. The official `vsd-riscv2` repository provides a preconfigured development environment containing the required tools and dependencies for RISC-V development.
+Before working on FPGA hardware, custom IP blocks, or SoC integration, it is important to establish a reliable software development environment and understand the complete RISC-V execution flow.
 
-In this task, the GitHub Codespace environment provided by the repository is launched and verified to ensure that all required components are available and functioning correctly.
+The official `vsd-riscv2` repository provides a preconfigured development environment through GitHub Codespaces, allowing participants to verify the RISC-V toolchain and simulator setup. Once the reference flow is validated, the `vsdfpga_labs` repository is used to execute additional laboratory exercises and verify multi-repository workflows.
+
+To further prepare for future FPGA development tasks, a local Linux environment was also configured by installing and validating the RISC-V GCC Toolchain, Spike ISA Simulator, and RISC-V Proxy Kernel (PK).
+
+This task serves as the foundation for all subsequent RISC-V, IP development, and FPGA integration activities.
 
 ---
 
 ## Environment Used
 
+### Cloud Environment
+
 - GitHub Codespaces
-- Ubuntu Linux Environment
 - VS Code Web Interface
-- Preconfigured RISC-V Toolchain
-- Official `vsd-riscv2` Repository
+- Preconfigured RISC-V Development Environment
 
----
+### Local Environment
 
-## Repository Used
+- Oracle VirtualBox
+- Ubuntu Linux
+- RISC-V GCC Toolchain (SiFive GCC 8.3.0)
+- Spike ISA Simulator
+- RISC-V Proxy Kernel (PK v1.0.0)
 
-```bash
-https://github.com/vsdip/vsd-riscv2
-```
+### Repositories Used
+
+- https://github.com/vsdip/vsd-riscv2
+- https://github.com/vsdip/vsdfpga_labs
 
 ---
 
@@ -40,7 +58,7 @@ The official `vsd-riscv2` repository was opened on GitHub. The repository contai
 
 ### Screenshot
 
-![Repository Access](sreenshots/repository_access.png)
+![Repository Access](screenshots/repository_access.png)
 
 ---
 
@@ -62,7 +80,7 @@ The following checks confirmed that the environment was ready for use:
 
 ### Screenshot
 
-![Codespace Initialization](sreenshots/codespace_initialization.png)
+![Codespace Initialization](screenshots/codespace_initialization.png)
 
 ---
 
@@ -80,7 +98,7 @@ The terminal provides direct access to the pre-installed RISC-V GNU Toolchain, S
 
 ### Screenshot
 
-![Codespace Terminal](sreenshots/step2_1_terminal.png)
+![Codespace Terminal](screenshots/step2_1_terminal.png)
 
 ---
 
@@ -140,7 +158,7 @@ The successful execution confirms that:
 
 ### Screenshot
 
-![Program Execution](sreenshots/step2_3_program_execution.png)
+![Program Execution](screenshots/step2_3_program_execution.png)
 
 ---
 
@@ -182,7 +200,7 @@ The output matched the expected result, confirming successful compilation and ex
 
 ### Screenshot
 
-![Modified Program Output](sreenshots/step2_4_modified_output.png)
+![Modified Program Output](screenshots/step2_4_modified_output.png)
 
 ---
 
@@ -204,7 +222,7 @@ After cloning, the repository was successfully downloaded and made available for
 
 ### Screenshot
 
-![Repository Cloning](sreenshots/step3_1_clone_repo.png)
+![Repository Cloning](screenshots/step3_1_clone_repo.png)
 
 ---
 
@@ -218,7 +236,7 @@ cd vsdfpga_labs/basicRISCV/Firmware
 
 ### Screenshot
 
-![Firmware Directory](sreenshots/step3_2_firmware_directory.png)
+![Firmware Directory](screenshots/step3_2_firmware_directory.png)
 
 ---
 
@@ -230,7 +248,7 @@ The source code was reviewed to understand the application before compilation.
 
 ### Screenshot
 
-![riscv_logo.c](sreenshots/step3_3_source_code.png)
+![riscv_logo.c](screenshots/step3_3_source_code.png)
 
 ---
 
@@ -264,7 +282,7 @@ The VSDFPGA Labs repository was successfully cloned, the sample firmware was com
 
 ### Screenshot
 
-![SPIKE Execution](sreenshots/step3_5_output.png)
+![SPIKE Execution](screenshots/step3_5_output.png)
 
 ---
 
@@ -290,7 +308,7 @@ git clone https://github.com/vsdip/vsdfpga_labs.git
 
 ### Screenshot
 
-![Repository Cloning](sreenshots/repository_clone.png)
+![Repository Cloning](screenshots/repository_clone.png)
 
 ---
 
@@ -307,7 +325,7 @@ riscv64-unknown-elf-gcc --version
 
 ### Screenshot
 
-![Toolchain Verification](sreenshots/gcc_version.png)
+![Toolchain Verification](screenshots/gcc_version.png)
 
 ---
 
@@ -324,7 +342,7 @@ spike --help
 
 ### Screenshot
 
-![Spike Installation](sreenshots/spike_install.png)
+![Spike Installation](screenshots/spike_install.png)
 
 ---
 
@@ -346,7 +364,7 @@ v1.0.0
 
 ### Screenshot
 
-![PK Installation](sreenshots/pk_install.png)
+![PK Installation](screenshots/pk_install.png)
 
 ---
 
@@ -372,7 +390,7 @@ spike pk sum1ton.o
 
 ### Screenshot
 
-![sum1ton Execution](sreenshots/sum1ton_run.png)
+![sum1ton Execution](screenshots/sum1ton_run.png)
 
 ---
 
@@ -392,7 +410,7 @@ cat riscv_logo.c
 
 ### Screenshot
 
-![riscv_logo Execution](sreenshots/riscv_logo_program.png)
+![riscv_logo Execution](screenshots/riscv_logo_program.png)
 
 Compile:
 
@@ -408,7 +426,7 @@ spike pk riscv_logo.o
 
 ### Screenshot
 
-![riscv_logo Execution](sreenshots/riscv_logo_run.png)
+![riscv_logo Execution](screenshots/riscv_logo_run.png)
 
 ---
 
@@ -421,3 +439,70 @@ spike pk riscv_logo.o
 - Successfully executed the `sum1ton.c` sample program from `vsd-riscv2`.
 - Successfully executed the `riscv_logo.c` firmware example from `vsdfpga_labs`.
 - Verified readiness for FPGA and RISC-V development workflows.
+
+---
+
+# Understanding Check
+
+## Q1. Where is the RISC-V program located in the vsd-riscv2 repository?
+
+The sample RISC-V programs are located in the `samples` directory of the `vsd-riscv2` repository. During this task, the program `sum1ton.c` was used to validate the RISC-V toolchain and execution flow.
+
+---
+
+## Q2. How is the program compiled and loaded into memory?
+
+The program is compiled using the RISC-V cross-compiler:
+
+```bash
+riscv64-unknown-elf-gcc -o sum1ton.o sum1ton.c
+```
+
+This generates a RISC-V executable file. The executable is then loaded and executed using the Spike ISA simulator together with the Proxy Kernel:
+
+```bash
+spike pk sum1ton.o
+```
+
+The Proxy Kernel loads the executable into simulated memory and transfers execution control to the program.
+
+---
+
+## Q3. How does the RISC-V core access memory and memory-mapped I/O?
+
+The RISC-V core accesses memory using load and store instructions. Memory-mapped I/O devices are assigned specific memory addresses within the address space. The processor communicates with peripherals by reading from or writing to these addresses using the same load/store instructions used for normal memory access.
+
+---
+
+## Q4. Where would a new FPGA IP block logically integrate in this system?
+
+A new FPGA IP block would typically be integrated as a memory-mapped peripheral connected to the system bus. The RISC-V processor would interact with the IP block through its assigned address range, allowing software to configure, control, and exchange data with the hardware module.
+
+---
+
+# Observations
+
+* GitHub Codespace provided a ready-to-use development environment for validating the RISC-V reference design.
+* The local Linux environment required manual installation and configuration of the RISC-V GCC toolchain, Spike simulator, and Proxy Kernel.
+* The `sum1ton.c` program successfully demonstrated the complete compile-execute workflow.
+* The `riscv_logo.c` firmware example successfully executed on the local setup, confirming correct simulator and toolchain operation.
+* Understanding the interaction between the compiler, Proxy Kernel, and Spike simulator helped clarify the RISC-V software execution flow.
+
+---
+
+# Key Learnings
+
+* Learned how to set up a RISC-V development environment using both GitHub Codespaces and a local Linux machine.
+* Understood the role of the RISC-V GCC cross-compiler in generating target binaries.
+* Learned how Spike simulates RISC-V hardware and executes compiled programs.
+* Understood the purpose of the Proxy Kernel (PK) in loading and running applications on Spike.
+* Gained familiarity with memory-mapped I/O and peripheral integration concepts.
+* Successfully validated both the reference RISC-V flow and the VSDFPGA lab environment.
+
+---
+
+# Conclusion
+
+This task was successfully completed by setting up the required development environment, validating the RISC-V reference design, and running the VSDFPGA lab examples. Both Codespace and local execution environments were verified. The successful execution of `sum1ton.c` and `riscv_logo.c` confirms that the toolchain, simulator, and Proxy Kernel are functioning correctly and that the environment is ready for upcoming FPGA, IP integration, and SoC development tasks.
+
+---
