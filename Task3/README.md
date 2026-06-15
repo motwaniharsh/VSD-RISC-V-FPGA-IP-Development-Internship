@@ -312,7 +312,33 @@ git clone https://github.com/vsdip/vsdfpga_labs.git
 
 ---
 
-## 4.2 Install and Configure RISC-V Toolchain
+## 4.2 Analyze the Reference Dockerfile
+
+The Dockerfile provided in the `vsd-riscv2` repository was studied to identify the software dependencies and development tools required for a local RISC-V environment.
+
+Reference:
+
+https://raw.githubusercontent.com/vsdip/vsd-riscv2/refs/heads/main/.devcontainer/Dockerfile
+
+The Dockerfile was not executed directly. Instead, it was used as a guide for manually setting up the local environment.
+
+The following components were identified from the Dockerfile:
+
+- RISC-V GNU Toolchain
+- Spike ISA Simulator
+- RISC-V Proxy Kernel (PK)
+- Git
+- GCC and Build Tools
+- Python3
+- Icarus Verilog
+- GTKWave
+- Required development libraries and dependencies
+
+This analysis helped ensure that the local environment closely match the official Codespace environment used during the internship.
+
+---
+
+## 4.3 Install and Configure RISC-V Toolchain
 
 Downloaded and configured the SiFive RISC-V GCC Toolchain (v8.3.0).
 
@@ -329,7 +355,7 @@ riscv64-unknown-elf-gcc --version
 
 ---
 
-## 4.3 Build Spike Simulator
+## 4.4 Build Spike Simulator
 
 Spike ISA Simulator was built from source and installed successfully.
 
@@ -346,7 +372,7 @@ spike --help
 
 ---
 
-## 4.4 Build Proxy Kernel (PK)
+## 4.5 Build Proxy Kernel (PK)
 
 The RISC-V Proxy Kernel (PK) version 1.0.0 was compiled and installed.
 
@@ -368,7 +394,7 @@ v1.0.0
 
 ---
 
-## 4.5 Execute Sample Program from vsd-riscv2
+## 4.6 Execute Sample Program from vsd-riscv2
 
 Navigate to:
 
@@ -394,7 +420,7 @@ spike pk sum1ton.o
 
 ---
 
-## 4.6 Execute VSDFPGA Firmware Example
+## 4.7 Execute VSDFPGA Firmware Example
 
 Navigate to:
 
