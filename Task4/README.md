@@ -35,65 +35,29 @@ basicRISCV/
 
 ## File Description
 
-### `riscv.v`
+- `riscv.v`: Top-level RISC-V SoC design file responsible for connecting the CPU, memory, UART, and memory-mapped peripherals.
 
-Top-level RISC-V SoC design file responsible for connecting the CPU, memory, UART, and memory-mapped peripherals.
+- `gpio_ip.v`: Custom GPIO peripheral implementing a 32-bit memory-mapped register with read and write capability.
 
----
+- `Makefile`: Build automation file used for synthesis, implementation, simulation, and FPGA programming of the design.
 
-### `gpio_ip.v`
+- `io.h`: Firmware header file containing memory-mapped peripheral definitions and address mappings used by software applications.
 
-Custom GPIO peripheral implementing a 32-bit memory-mapped register with read and write capability.
+- `gpio_test.c`: Firmware application developed to verify the functionality of the integrated GPIO peripheral.
 
----
+- `ice40_stubs.v`: Simulation support file used to replace FPGA-specific primitives during RTL simulation with Icarus Verilog.
 
-### `Makefile`
+- `gpio_test.bram.hex`: Memory initialization file generated from the firmware program and loaded into the SoC memory during simulation.
 
-Build automation file used for synthesis, implementation, simulation, and FPGA programming of the design.
-
----
-
-### `io.h`
-
-Firmware header file containing memory-mapped peripheral definitions and address mappings used by software applications.
+- `sim.vvp`: Compiled Icarus Verilog simulation executable used to run RTL verification.
 
 ---
 
-### `gpio_test.c`
-
-Firmware application developed to verify the functionality of the integrated GPIO peripheral.
-
----
-
-### `ice40_stubs.v`
-
-Simulation support file used to replace FPGA-specific primitives during RTL simulation with Icarus Verilog.
-
----
-
-### `gpio_test.bram.hex`
-
-Memory initialization file generated from the firmware program and loaded into the SoC memory during simulation.
-
----
-
-### `sim.vvp`
-
-Compiled Icarus Verilog simulation executable used to run RTL verification.
-
----
-
-### `sim.vcd`
-
-Waveform dump file generated during simulation and analyzed using GTKWave.
-
----
-
-## Step-1: Understanding the Existing SoC (`riscv.v`)
+# Step-1: Understanding the Existing SoC (`riscv.v`)
 
 Before designing the GPIO IP, the architecture of the provided RISC-V SoC was studied to understand how the processor communicates with memory and peripherals. The objective of this step was to identify the bus interface, address decoding mechanism, and peripheral integration methodology already present in the design.
 
-### 1(a) The SoC Top-Level Module
+## 1.1 The SoC Top-Level Module
 
 The `SOC` module acts as the top-level integration point of the system. It connects:
 
@@ -107,7 +71,7 @@ All peripherals communicate with the processor through a common memory-mapped bu
 
 ---
 
-### 1(b) CPU Bus Interface
+## 1.2 CPU Bus Interface
 
 The processor communicates with memory and peripherals using the following bus signals:
 
@@ -133,7 +97,7 @@ From this interface, it can be observed that the processor interacts with periph
 
 ---
 
-### 1(c) Memory-Mapped I/O Structure
+## 1.3 Memory-Mapped I/O Structure
 
 The SoC separates memory accesses from peripheral accesses using address decoding.
 
@@ -151,7 +115,7 @@ The processor generates an address along with read or write control signals, whi
 
 ---
 
-### 1(d) Word-Aligned Peripheral Addressing
+## 1.4 Word-Aligned Peripheral Addressing
 
 The SoC uses word-aligned addressing:
 
@@ -179,11 +143,11 @@ This addressing mechanism provides a simple method for selecting peripherals wit
 
 ---
 
-### 1(e) Existing Memory-Mapped Peripherals
+## 1.5 Existing Memory-Mapped Peripherals
 
 Before integrating the GPIO IP, the existing peripherals in the SoC were analyzed as reference implementations.
 
-#### LED Peripheral
+### LED Peripheral
 
 The LED peripheral is implemented directly inside the SoC and updates the LED output whenever a write operation is performed to the corresponding memory-mapped address.
 
@@ -203,7 +167,7 @@ Key observations:
 
 ---
 
-#### UART Peripheral
+### UART Peripheral
 
 The UART peripheral is also memory-mapped and is accessed through dedicated address bits.
 
@@ -217,7 +181,7 @@ The UART implementation provided a useful reference for integrating the custom G
 
 ---
 
-## Step-2: Designing the GPIO IP RTL ([`gpio_ip.v`](RTL/gpio_ip.v))
+# Step-2: Designing the GPIO IP RTL ([`gpio_ip.v`](RTL/gpio_ip.v))
 
 After understanding the SoC architecture and bus interface, a custom memory-mapped GPIO peripheral was designed.
 
@@ -231,7 +195,7 @@ The GPIO IP was implemented in a separate file named `gpio_ip.v`.
 
 ---
 
-### 2(a) GPIO IP Interface
+## 2.1 GPIO IP Interface
 
 The GPIO module exposes the following interface:
 
@@ -257,7 +221,7 @@ The module communicates with the SoC through these signals and behaves as a memo
 
 ---
 
-### 2(b) Register Storage
+## 2.2 Register Storage
 
 A 32-bit register was created to store the value written by the processor.
 
@@ -269,7 +233,7 @@ This register acts as the internal storage element of the GPIO IP.
 
 ---
 
-### 2(c) Write Logic
+## 2.3 Write Logic
 
 The GPIO register is updated whenever a valid write operation occurs.
 
@@ -290,7 +254,7 @@ This implements the write functionality required by the specification.
 
 ---
 
-### 2(d) Readback Logic
+## 2.4 Readback Logic
 
 The GPIO IP supports read operations by returning the current register contents.
 
@@ -304,7 +268,7 @@ This allows software to verify previously written values.
 
 ---
 
-### 2(e) GPIO Output Logic
+## 2.5 GPIO Output Logic
 
 The output of the GPIO IP is directly driven by the internal register.
 
@@ -319,13 +283,13 @@ As a result:
 
 ---
 
-## Step-3: Integrating the GPIO IP into the SoC ([`riscv.v`](RTL/riscv.v))
+# Step-3: Integrating the GPIO IP into the SoC ([`riscv.v`](RTL/riscv.v))
 
 After designing the GPIO peripheral, the next step was to integrate it into the existing RISC-V SoC. This required assigning a memory-mapped address, connecting the GPIO IP to the CPU bus, and integrating its readback path into the SoC.
 
 ---
 
-### 3(a) GPIO Address Allocation
+## 3.1 GPIO Address Allocation
 
 A new memory-mapped address location was allocated for the GPIO peripheral by defining a new address bit.
 
@@ -344,7 +308,7 @@ The existing peripherals occupied bits 0, 1 and 2. Assigning bit 3 created a ded
 
 ---
 
-### 3(b) GPIO Signal Declaration
+## 3.2 GPIO Signal Declaration
 
 New signals were declared to connect the GPIO peripheral to the SoC bus.
 
@@ -362,7 +326,7 @@ These signals form the interface between the GPIO peripheral and the SoC.
 
 ---
 
-### 3(c) GPIO IP Instantiation
+## 3.3 GPIO IP Instantiation
 
 The GPIO IP was instantiated inside the `SOC` module and connected to the processor bus.
 
@@ -386,7 +350,7 @@ Whenever all three conditions are true, the value on `mem_wdata` is written into
 
 ---
 
-### 3(d) Readback Integration
+## 3.4 Readback Integration
 
 To allow software to read the GPIO register, the GPIO read data was integrated into the SoC read-data multiplexer.
 
@@ -403,7 +367,7 @@ This enables software verification of the data written to the peripheral.
 
 ---
 
-### 3(e) Build Flow Update
+## 3.5 Build Flow Update
 
 The FPGA build flow was updated to include the custom GPIO IP module during synthesis.
 
@@ -429,7 +393,7 @@ This ensures that the GPIO IP is compiled together with the RISC-V SoC during sy
 
 ---
 
-### 3(f) Build Verification
+## 3.6 Build Verification
 
 After integrating the GPIO peripheral, the design was rebuilt to verify that the modified SoC compiled successfully.
 
@@ -446,13 +410,13 @@ The synthesis completed successfully without errors, confirming that the GPIO IP
 
 ---
 
-## Step-4: Firmware Development and RTL Verification
+# Step-4: Firmware Development and RTL Verification
 
 After integrating the GPIO IP into the SoC, a software test program was developed to verify correct GPIO operation. The verification process included firmware development, RTL simulation, and waveform analysis using GTKWave.
 
 ---
 
-### 4(a) Modification of io.h
+## 4.1 Modification of io.h
 
 To enable software access to the newly integrated GPIO peripheral, a GPIO I/O definition was added to `io.h`.
 
@@ -468,7 +432,7 @@ This definition allows the firmware to communicate with the GPIO peripheral thro
 
 ---
 
-### 4(b) Developing GPIO Test Firmware
+## 4.2 Developing GPIO Test Firmware
 
 A firmware program named [`gpio_test.c`](Firmware/gpio_test.c) was created to validate the GPIO peripheral.
 
@@ -489,7 +453,7 @@ This value was chosen because it is easily identifiable during waveform analysis
 
 ---
 
-### 4(c) Firmware Compilation
+## 4.3 Firmware Compilation
 
 The firmware was compiled and converted into a memory initialization file using:
 
@@ -506,7 +470,7 @@ This generated the firmware image that was later loaded into memory during simul
 
 ---
 
-### 4(d) RTL Simulation Setup
+## 4.4 RTL Simulation Setup
 
 RTL simulation was performed using Icarus Verilog.
 
@@ -521,7 +485,7 @@ vvp sim.vvp
 
 ---
 
-### 4(e) Simulation Results
+## 4.5 Simulation Results
 
 The UART output generated during simulation confirmed successful GPIO operation.
 
@@ -552,7 +516,7 @@ This verifies that:
 
 ---
 
-### 4(f) GTKWave Verification
+## 4.6 GTKWave Verification
 
 A waveform dump (`sim.vcd`) was generated during simulation and analyzed using GTKWave.
 
@@ -617,3 +581,5 @@ The following functionality was verified:
 # Conclusion
 
 This task successfully demonstrated the complete integration and verification flow of a custom GPIO peripheral within the VSD Squadron RISC-V SoC. The GPIO IP was designed, connected to the SoC memory map, and accessed through firmware running on the RISC-V processor. RTL simulation confirmed successful GPIO write and read operations, while GTKWave verification validated the corresponding hardware signals. The task provided practical experience in SoC peripheral integration, memory-mapped I/O design, firmware development, and RTL-level debugging.
+
+---
