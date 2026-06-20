@@ -578,8 +578,17 @@ Waveform observations:
 
 ![GTKWave GPIO Verification](screenshots/gtkwave_gpio_validation.png)
 
----
+### Validation Results
 
+The following functionality was verified:
+
+- CPU successfully wrote data to the GPIO register
+- GPIO register retained the written value
+- Readback returned the correct value
+- GPIO output reflected the stored register value
+- Simulation completed successfully with "GPIO TEST PASSED"
+
+---
 ---
 
 # Observations
