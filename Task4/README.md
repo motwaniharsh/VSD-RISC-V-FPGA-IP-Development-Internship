@@ -22,14 +22,14 @@ basicRISCV/
 │   ├── riscv.v              ← SoC top-level modified for GPIO integration
 │   ├── gpio_ip.v            ← Custom GPIO peripheral
 │   ├── Makefile             ← Updated build configuration
-│   └── ice40_stubs.v        ← Simulation stubs used for RTL verification
+│   ├── ice40_stubs.v        ← Simulation stubs used for RTL verification
+│   └── sim.vvp              ← Compiled simulation executable
 │
 └── Firmware/
     ├── gpio_test.c          ← GPIO validation firmware
     ├── io.h                 ← GPIO address definitions
-    ├── gpio_test.bram.hex   ← Generated firmware image
-    ├── sim.vvp              ← Compiled simulation executable
-    └── sim.vcd              ← Waveform dump used in GTKWave
+    └── gpio_test.bram.hex   ← Generated firmware image
+
 
 ```
 
