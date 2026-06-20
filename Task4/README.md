@@ -13,91 +13,79 @@ The GPIO IP implemented in this task provides:
 * Integration with the existing memory-mapped bus architecture
 
 ---
-
 ## Relevant Files Used
 
 ```text
 basicRISCV/
+│
 ├── RTL/
-│   ├── riscv.v                ← SoC top-level modified for GPIO integration
-│   ├── gpio_ip.v              ← Custom GPIO peripheral
-│   └── ice40_stubs.v          ← Simulation stubs used for RTL verification
+│   ├── riscv.v              ← SoC top-level modified for GPIO integration
+│   ├── gpio_ip.v            ← Custom GPIO peripheral
+│   ├── Makefile             ← Updated build configuration
+│   └── ice40_stubs.v        ← Simulation stubs used for RTL verification
 │
-├── Firmware/
-│   ├── gpio_test.c            ← GPIO validation firmware
-│   └── firmware.hex           ← Generated firmware image
-│
-└── Simulation/
-    └── sim.vcd                ← Waveform dump used for GTKWave analysis
+└── Firmware/
+    ├── gpio_test.c          ← GPIO validation firmware
+    ├── io.h                 ← GPIO address definitions
+    ├── gpio_test.bram.hex   ← Generated firmware image
+    ├── sim.vvp              ← Compiled simulation executable
+    └── sim.vcd              ← Waveform dump used in GTKWave
+
 ```
 
-### File Description
+## File Description
 
-#### `riscv.v`
+### `riscv.v`
 
-Top-level SoC file responsible for connecting the CPU, memory, and peripherals.
-
-For this task, the following modifications were performed:
-
-* GPIO address allocation
-* GPIO signal declarations
-* GPIO IP instantiation
-* Bus signal routing
-* Readback integration into the CPU data path
+Top-level RISC-V SoC design file responsible for connecting the CPU, memory, UART, and memory-mapped peripherals.
 
 ---
 
-#### `gpio_ip.v`
+### `gpio_ip.v`
 
-Contains the RTL implementation of the custom GPIO peripheral.
-
-Features implemented:
-
-* 32-bit storage register
-* Write logic
-* Readback logic
-* GPIO output interface
-
-This module was designed as a standalone memory-mapped IP and later integrated into the SoC.
+Custom GPIO peripheral implementing a 32-bit memory-mapped register with read and write capability.
 
 ---
 
-#### `gpio_test.c`
+### `Makefile`
 
-Software test program executed on the RISC-V processor.
-
-The program:
-
-* Writes a value to the GPIO register
-* Reads the value back
-* Compares write and read values
-* Reports the result through UART
-
-This serves as the functional verification software for the GPIO IP.
+Build automation file used for synthesis, implementation, simulation, and FPGA programming of the design.
 
 ---
 
-#### `ice40_stubs.v`
+### `io.h`
 
-Simulation-only module used to replace FPGA-specific primitives such as:
-
-* `SB_HFOSC`
-* `SB_PLL40_CORE`
-
-This allows RTL simulation using Icarus Verilog without requiring FPGA hardware models.
+Firmware header file containing memory-mapped peripheral definitions and address mappings used by software applications.
 
 ---
 
-#### `sim.vcd`
+### `gpio_test.c`
 
-Waveform dump generated during simulation.
+Firmware application developed to verify the functionality of the integrated GPIO peripheral.
 
-The waveform was analyzed using GTKWave to verify:
+---
 
-* Address decoding
-* GPIO register updates
-* Readback behavior
-* Correct CPU-to-peripheral communication
+### `ice40_stubs.v`
+
+Simulation support file used to replace FPGA-specific primitives during RTL simulation with Icarus Verilog.
+
+---
+
+### `gpio_test.bram.hex`
+
+Memory initialization file generated from the firmware program and loaded into the SoC memory during simulation.
+
+---
+
+### `sim.vvp`
+
+Compiled Icarus Verilog simulation executable used to run RTL verification.
+
+---
+
+### `sim.vcd`
+
+Waveform dump file generated during simulation and analyzed using GTKWave.
 
 ---
 
@@ -415,7 +403,33 @@ This enables software verification of the data written to the peripheral.
 
 ---
 
-### 3(e) Build Verification
+### 3(e) Build Flow Update
+
+The FPGA build flow was updated to include the custom GPIO IP module during synthesis.
+
+### Makefile Modification
+
+Original:
+
+```makefile
+VERILOG_FILE= riscv.v
+```
+
+Modified:
+
+```makefile
+VERILOG_FILE= riscv.v gpio_ip.v
+```
+
+This ensures that the GPIO IP is compiled together with the RISC-V SoC during synthesis and implementation.
+
+### Relevant File
+
+- [`Makefile`](Makefile)
+
+---
+
+### 3(f) Build Verification
 
 After integrating the GPIO peripheral, the design was rebuilt to verify that the modified SoC compiled successfully.
 
@@ -438,7 +452,23 @@ After integrating the GPIO IP into the SoC, a software test program was develope
 
 ---
 
-### 4(a) Developing GPIO Test Firmware
+### 4(a) Modification of io.h
+
+To enable software access to the newly integrated GPIO peripheral, a GPIO I/O definition was added to `io.h`.
+
+```c
+#define IO_GPIO 32
+```
+
+This definition allows the firmware to communicate with the GPIO peripheral through the existing `IO_IN()` and `IO_OUT()` macros.
+
+### Relevant File
+
+- [`io.h`](Firmware/io.h)
+
+---
+
+### 4(b) Developing GPIO Test Firmware
 
 A firmware program named [`gpio_test.c`](Firmware/gpio_test.c) was created to validate the GPIO peripheral.
 
@@ -459,7 +489,7 @@ This value was chosen because it is easily identifiable during waveform analysis
 
 ---
 
-### 4(b) Firmware Compilation
+### 4(c) Firmware Compilation
 
 The firmware was compiled and converted into a memory initialization file using:
 
@@ -476,7 +506,7 @@ This generated the firmware image that was later loaded into memory during simul
 
 ---
 
-### 4(c) RTL Simulation Setup
+### 4(d) RTL Simulation Setup
 
 RTL simulation was performed using Icarus Verilog.
 
@@ -491,7 +521,7 @@ vvp sim.vvp
 
 ---
 
-### 4(d) Simulation Results
+### 4(e) Simulation Results
 
 The UART output generated during simulation confirmed successful GPIO operation.
 
@@ -522,7 +552,7 @@ This verifies that:
 
 ---
 
-### 4(e) GTKWave Verification
+### 4(f) GTKWave Verification
 
 A waveform dump (`sim.vcd`) was generated during simulation and analyzed using GTKWave.
 
