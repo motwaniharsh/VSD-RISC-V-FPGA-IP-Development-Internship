@@ -29,8 +29,8 @@ This internship focuses on understanding the RISC-V ecosystem through hands-on e
 | Task 1 | Introduction to the RISC-V Compilation and Optimization Process | ✅ Completed    |
 | Task 2 | SPIKE Simulation and Observation with -O1 and -Ofast            | ✅ Completed    |
 | Task 3 | Environment Setup & RISC-V Reference Bring-Up                   | ✅ Completed    |
-| Task 4 | To Be Updated                                                   | ⏳ Pending      |
-
+| Task 4 | Design & Integrate Your First Memory-Mapped IP                  | ✅ Completed    |
+| Task 5 | To Be Updated                                                   | ⏳ Pending      |
 
 ---
 
@@ -84,6 +84,23 @@ Topics covered:
 * Verification of toolchain functionality through simulation and execution of sample programs
 
 📄 Detailed Report: [Task 3](./Task3/README.md)
+
+---
+
+### Task 4: Design & Integrate Your First Memory-Mapped IP
+
+Topics covered:
+
+* GPIO IP design in Verilog
+* Integration of a custom peripheral into the RISC-V SoC
+* Modification of the SoC memory map
+* GPIO read and write operations
+* Firmware development for GPIO testing
+* RTL simulation using Icarus Verilog
+* Waveform analysis using GTKWave
+* Verification of GPIO functionality through simulation
+
+📄 Detailed Report: [Task 4](./Task4/README.md)
 
 ---
 
