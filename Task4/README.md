@@ -425,7 +425,7 @@ This ensures that the GPIO IP is compiled together with the RISC-V SoC during sy
 
 ### Relevant File
 
-- [`Makefile`](Makefile)
+- [`Makefile`](RTL/Makefile)
 
 ---
 
@@ -566,13 +566,13 @@ The following signals were observed:
 | `gpio_out`  | GPIO output signal           |
 | `rdata`     | Data returned to the CPU     |
 
-Waveform observations:
+### Waveform Observations
 
-* `mem_addr = 32` confirms access to the GPIO register address.
-* `mem_wdata = 0x12345678` shows the value written by the CPU.
-* `gpio_reg = 0x12345678` confirms successful register update.
-* `gpio_out = 0x12345678` confirms correct GPIO output generation.
-* `rdata = 0x12345678` confirms successful readback operation.
+- `mem_addr` shows the CPU accessing the memory-mapped GPIO peripheral.
+- `gpio_reg = 0x12345678` confirms that the GPIO register successfully stored the written value.
+- `gpio_out = 0x12345678` confirms that the GPIO output reflects the register contents.
+- `rdata = 0x12345678` confirms successful readback of the stored value.
+- State transitions observed in the waveform indicate correct CPU execution and peripheral access.
 
 ### Screenshot
 
