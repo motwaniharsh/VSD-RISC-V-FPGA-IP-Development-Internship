@@ -474,7 +474,9 @@ This generated the firmware image that was later loaded into memory during simul
 
 RTL simulation was performed using Icarus Verilog.
 
-To support simulation, FPGA-specific primitives such as `SB_HFOSC` and `SB_PLL40_CORE` were replaced using [`ice40_stubs.v`](RTL/ice40_stubs.v).
+During simulation, compilation initially failed because FPGA-specific primitives (`SB_HFOSC` and `SB_PLL40_CORE`) used by the VSDSquadron FPGA design are not supported by Icarus Verilog.
+
+To resolve this issue, a custom [`ice40_stubs.v`](RTL/ice40_stubs.v) file was created containing behavioral models for these primitives. The stub implementation generates a simulation clock for `SB_HFOSC` and directly forwards the reference clock for `SB_PLL40_CORE`, enabling successful RTL simulation without requiring FPGA vendor libraries.
 
 The simulation was compiled and executed using:
 
