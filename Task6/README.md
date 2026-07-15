@@ -442,7 +442,7 @@ Hardware connections used during validation:
 |  | Pin 23 ↔ GND(Common Ground) |
 | VCC ↔ 3.3V | Jumper Installed |
 
-![Hardware Connections](screenshots/hardware_connections.jpg)
+![Hardware Connections](screenshots/hardware_connections.jpeg)
 
 ---
 
