@@ -31,6 +31,7 @@ This internship focuses on understanding the RISC-V ecosystem through hands-on e
 | Task 3 | Environment Setup & RISC-V Reference Bring-Up                   | ✅ Completed    |
 | Task 4 | Design & Integrate Your First Memory-Mapped IP                  | ✅ Completed    |
 | Task 5 | To Be Updated                                                   | ⏳ Pending      |
+| Task 6 | Timer IP Development for RISC-V SoC (Core Contributor Task)     | ✅ Completed    |
 
 ---
 
@@ -101,6 +102,27 @@ Topics covered:
 * Verification of GPIO functionality through simulation
 
 📄 Detailed Report: [Task 4](./Task4/README.md)
+
+---
+
+### Task 6: Timer IP Development for RISC-V SoC (Core Contributor Task)
+
+Topics covered:
+
+- Design of a 32-bit Timer IP in Verilog HDL
+- Memory-mapped register interface implementation
+- One-Shot timer operation
+- Periodic timer with auto-reload functionality
+- Programmable prescaler implementation
+- Integration of the Timer IP into the RISC-V SoC
+- Modification of the SoC memory map and address decoding
+- Firmware development for Timer validation
+- RTL simulation using Icarus Verilog
+- Waveform analysis using GTKWave
+- FPGA implementation and hardware validation on the VSDSquadron FPGA Mini
+- UART-based verification using a CH340 USB-to-UART converter
+
+📄 **Detailed Report:** [Task 6](Task6/README.md)
 
 ---
 
