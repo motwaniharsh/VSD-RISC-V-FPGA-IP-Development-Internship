@@ -102,32 +102,10 @@ The overall architecture is fully synchronous with the system clock and requires
 
 ## 6. Block Diagram
 
-```text
-                 +--------------------------------+
-                 |      RISC-V Processor           |
-                 +---------------+----------------+
-                                 |
-                         Memory-Mapped Bus
-                                 |
-                 +---------------v----------------+
-                 |       Register Interface       |
-                 +---------------+----------------+
-                                 |
-          +----------------------+----------------------+
-          |                      |                      |
-      Control Logic        Load Register        Status Register
-          |                      |                      ^
-          |                      |                      |
-          +-----------+----------+----------------------+
-                      |
-               Programmable Prescaler
-                      |
-               32-bit Countdown Counter
-                      |
-               Timeout Detection Logic
-                      |
-               Timeout Status Flag
-```
+![Timer IP Block Diagram](images/block_diagram.png)
+
+**Figure 1.** Block diagram of the Timer IP showing the register interface, control logic, programmable prescaler, countdown counter, timeout detection logic, and communication with the RISC-V processor.
+
 ---
 
 ## 7. Functional Description
