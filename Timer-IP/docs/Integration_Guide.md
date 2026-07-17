@@ -164,25 +164,9 @@ This modification routes the Timer IP read data to the processor whenever the Ti
 
 ### RTL Integration Flow
 
-```text
-                CPU
-                 │
-         Memory Bus
-                 │
-        Address Decoder
-                 │
-        timer_we generated
-                 │
-        +----------------+
-        |   Timer IP     |
-        +----------------+
-          │          │
-      timer_rdata timeout
-          │
-      IO Read Mux
-          │
-         CPU
-```
+![RTL Integration Flow](images/rtl_integration_flow.png)
+
+**Figure 2.** RTL integration flow of the Timer IP within the VSDSquadron RISC-V SoC.
 
 After completing these modifications, the Timer IP becomes a fully functional memory-mapped peripheral within the VSDSquadron RISC-V SoC. Software can access the timer registers using standard load and store instructions without requiring any changes to the processor core.
 
