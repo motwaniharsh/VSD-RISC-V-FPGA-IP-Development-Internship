@@ -32,6 +32,7 @@ This internship focuses on understanding the RISC-V ecosystem through hands-on e
 | Task 4 | Design & Integrate Your First Memory-Mapped IP                  | ✅ Completed    |
 | Task 5 | To Be Updated                                                   | ⏳ Pending      |
 | Task 6 | Timer IP Development for RISC-V SoC (Core Contributor Task)     | ✅ Completed    |
+| Task 7 | Commercial-Grade Timer IP Documentation & Release               | ✅ Completed    |
 
 ---
 
@@ -123,6 +124,25 @@ Topics covered:
 - UART-based verification using a CH340 USB-to-UART converter
 
 📄 **Detailed Report:** [Task 6](Task6/README.md)
+
+---
+
+## Task 7: Commercial-Grade TImer IP Documentation & Release
+
+Topics covered:
+
+- Creation of a commercial-style IP repository structure
+- Development of a comprehensive IP User Guide
+- Documentation of the Timer IP register map
+- RTL integration guide for the VSDSquadron RISC-V SoC
+- Software integration and programming examples
+- Example firmware usage documentation
+- Hardware validation setup and UART test configuration
+- Creation of Timer IP architecture and integration flow diagrams
+- Preparation of professional GitHub documentation
+- Packaging the Timer IP for reusable SoC integration
+
+📄 **Detailed Report:** [Timer IP](Timer-IP)
 
 ---
 
