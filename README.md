@@ -1,6 +1,6 @@
 # VSD-RISC-V-FPGA-IP-Development-Internship
 
-Repository documenting tasks, experiments, and learning outcomes from the LNMIIT RISC-V FPGA IP Development Internship conducted by VLSI System Design (VSD).
+This repository documents the tasks, experiments, implementations, and learning outcomes completed during the LNMIIT RISC-V FPGA IP Development Internship conducted by VLSI System Design (VSD).
 
 ---
 
@@ -19,6 +19,19 @@ This internship focuses on understanding the RISC-V ecosystem through hands-on e
 * Explore compiler optimizations and assembly-level analysis.
 * Develop proficiency in FPGA design and IP development workflows.
 * Build practical skills in simulation, verification, and hardware implementation.
+
+---
+
+## 🛠️ Tools & Technologies Used
+
+| Category                      | Technologies                                       |
+| ----------------------------- | -------------------------------------------------- |
+| **Programming**               | `Verilog HDL`, `C`                                 |
+| **Architecture**              | `RISC-V ISA`                                       |
+| **Hardware Platform**         | `VSDSquadron FPGA Mini`                            |
+| **Development Tools**         | `GCC Cross Compiler`, `GNU Make`                   |
+| **Simulation & Verification** | `Spike ISA Simulator`, `Icarus Verilog`, `GTKWave` |
+| **Development Environment**   | `Linux`, `GitHub Codespaces`                       |
 
 ---
 
@@ -146,7 +159,7 @@ Topics covered:
 
 ---
 
-## Task 7: Commercial-Grade TImer IP Documentation & Release
+## Task 7: Commercial-Grade Timer IP Documentation & Release
 
 Topics covered:
 
@@ -162,6 +175,26 @@ Topics covered:
 - Packaging the Timer IP for reusable SoC integration
 
 📄 **Detailed Report:** [Timer IP](Timer-IP)
+
+---
+
+## Final Outcome
+
+During the internship, a complete memory-mapped **Timer IP** was successfully designed, integrated into the VSDSquadron RISC-V SoC, validated through RTL simulation, tested on FPGA hardware, and packaged as a reusable commercial-grade IP with comprehensive documentation.
+
+The project demonstrates the complete hardware development workflow, including:
+
+- RTL design and implementation in Verilog HDL
+- Memory-mapped peripheral integration into a RISC-V SoC
+- Firmware development for IP validation
+- RTL verification using Icarus Verilog and GTKWave
+- FPGA implementation on the VSDSquadron FPGA Mini
+- UART-based hardware validation
+- Commercial-grade IP packaging and documentation
+
+### Hardware Demonstration
+
+🎥 [`Timer IP running on the VSDSquadron FPGA Mini`](https://drive.google.com/file/d/1vPoEnjdAqNANe_Lh7bbKhQtctiqJn87N/view?usp=drive_link)
 
 ---
 
@@ -185,6 +218,6 @@ The LNM Institute of Information Technology (LNMIIT), Jaipur
 
 ## License
 
-This repository is maintained for educational and internship documentation purposes.
+This repository has been developed as part of the LNMIIT RISC-V FPGA IP Development Internship conducted by VLSI System Design (VSD). It is intended for educational, learning, and documentation purposes.
 
 ---
