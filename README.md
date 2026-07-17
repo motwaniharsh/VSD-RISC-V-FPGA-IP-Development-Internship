@@ -30,7 +30,7 @@ This internship focuses on understanding the RISC-V ecosystem through hands-on e
 | Task 2 | SPIKE Simulation and Observation with -O1 and -Ofast            | ✅ Completed    |
 | Task 3 | Environment Setup & RISC-V Reference Bring-Up                   | ✅ Completed    |
 | Task 4 | Design & Integrate Your First Memory-Mapped IP                  | ✅ Completed    |
-| Task 5 | To Be Updated                                                   | ⏳ Pending      |
+| Task 5 | Design & Integrate a Multi-Register GPIO IP                     | ✅ Completed    |
 | Task 6 | Timer IP Development for RISC-V SoC (Core Contributor Task)     | ✅ Completed    |
 | Task 7 | Commercial-Grade Timer IP Documentation & Release               | ✅ Completed    |
 
@@ -106,6 +106,25 @@ Topics covered:
 
 ---
 
+### Task 5: Design & Integrate a Multi-Register GPIO IP
+
+Topics covered:
+
+* Design of a multi-register GPIO IP in Verilog
+* Implementation of GPIO_DATA, GPIO_DIR, and GPIO_READ registers
+* Internal address decoding for register selection
+* Integration of the custom GPIO peripheral into the RISC-V SoC
+* Modification of the SoC memory map for GPIO integration
+* Memory-mapped read and write operations
+* Firmware development for multi-register GPIO testing
+* RTL simulation using Icarus Verilog
+* Waveform analysis using GTKWave
+* Verification of GPIO functionality through RTL simulation
+
+📄 Detailed Report: [Task 5](./Task5/README.md)
+
+---
+
 ### Task 6: Timer IP Development for RISC-V SoC (Core Contributor Task)
 
 Topics covered:
@@ -167,3 +186,5 @@ The LNM Institute of Information Technology (LNMIIT), Jaipur
 ## License
 
 This repository is maintained for educational and internship documentation purposes.
+
+---
