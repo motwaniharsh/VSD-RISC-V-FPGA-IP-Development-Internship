@@ -5,7 +5,7 @@ BOARD_FREQ=10
 CPU_FREQ=12
 FPGA_VARIANT=up5k
 FPGA_PACKAGE=sg48
-VERILOG_FILE= riscv.v gpio_ip.v timer_ip.v
+VERILOG_FILE= riscv.v gpio_ip.v
 
 #Uart Var	
 PICO_DEVICE=/dev/ttyUSB1   # replace by the terminal used by your device
