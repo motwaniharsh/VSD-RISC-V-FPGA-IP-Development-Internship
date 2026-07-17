@@ -245,7 +245,33 @@ Refer to the VSDSquadron project documentation for the exact build commands appl
 
 ---
 
-## 9. Validation
+## 9. Hardware Test Setup
+
+The Timer IP was validated on the VSDSquadron FPGA Mini Board. Since the example firmware reports test results through UART, a CH340 USB-to-UART converter was used to monitor the serial output on a host computer.
+
+### Hardware Connections
+
+| CH340 USB-to-UART Module | VSDSquadron FPGA Mini Board |
+|---------------------------|-----------------------------|
+| TX                        | RX (Pin 3)                  |
+| RX                        | TX (Pin 4)                  |
+| GND                       | GND (Pin 23)                |
+| VCC (3.3 V)               | 3.3 V Jumper Installed      |
+
+### Serial Terminal Configuration
+
+| Parameter | Value |
+|-----------|-------|
+| Baud Rate | 9600 |
+| Data Bits | 8 |
+| Parity | None |
+| Stop Bits | 1 |
+
+After programming the FPGA, the board was connected to a host computer through the CH340 USB-to-UART converter. A serial terminal configured with the above settings was used to monitor the UART messages printed by the example firmware during Timer IP validation.
+
+---
+
+## 10. Validation
 
 After successful integration, the Timer IP should operate as expected when running the example firmware.
 
@@ -262,7 +288,7 @@ A successful validation indicates that the Timer IP has been correctly integrate
 
 ---
 
-## 10. Troubleshooting
+## 11. Troubleshooting
 
 | Issue | Possible Cause | Solution |
 |--------|----------------|----------|
