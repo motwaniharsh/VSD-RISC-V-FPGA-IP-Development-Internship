@@ -509,6 +509,23 @@ The successful execution of the firmware confirms the correct hardware implement
 
 ---
 
+### Hardware Demonstration
+
+A hardware demonstration of the Timer IP running on the VSDSquadron FPGA board is available below.
+
+🎥 **Demo Video:**  [`Timer IP Demo`](https://drive.google.com/file/d/1vPoEnjdAqNANe_Lh7bbKhQtctiqJn87N/view?usp=drive_link)
+
+The demonstration showcases:
+
+- Timer IP running on the VSDSquadron FPGA
+- One-Shot mode operation
+- Periodic mode operation
+- Prescaler functionality
+- UART output confirming successful timer operation
+- End-to-end hardware validation of the custom Timer IP
+
+---
+
 ## 11. Observations
 
 - The Timer IP was successfully integrated into the VSDSquadron RISC-V SoC using a memory-mapped I/O interface.
